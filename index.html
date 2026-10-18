@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Janelas do Manacá</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Proposta de novo padrão opcional e gradativo para as janelas dos dormitórios do Condomínio Edifício Manacá.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%224%22 y=%226%22 width=%2224%22 height=%2220%22 rx=%222%22 fill=%22%23235c43%22/%3E%3Crect x=%226%22 y=%2216%22 width=%2220%22 height=%228%22 fill=%22%23b9beb9%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: fachada como grade. Seções empilhadas em uma coluna de leitura, com "vãos" de concreto entre elas; a cor verde da persiana é o acento, o lilás do manacá aparece só em detalhes. */
+:root{
+  --concreto:#ecedea;
+  --concreto-2:#e1e3df;
+  --papel:#f7f8f6;
+  --tinta:#1d2421;
+  --tinta-2:#4d5752;
+  --aluminio:#b9beb9;
+  --persiana:#235c43;
+  --persiana-2:#2f7556;
+  --manaca:#7b4f9e;
+  --vidro:#5f6e72;
+  --guilhotina:#6f6a5e;
+  --linha:rgba(29,36,33,.14);
+  --sombra:0 1px 0 rgba(29,36,33,.06),0 12px 32px -18px rgba(29,36,33,.35);
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --texto:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --concreto:#161a18;--concreto-2:#1d2220;--papel:#202623;--tinta:#e8ebe8;--tinta-2:#a9b2ad;
+  --aluminio:#59605c;--persiana:#3f9a70;--persiana-2:#55b285;--manaca:#b892d6;--vidro:#7d8d91;--guilhotina:#8d8778;
+  --linha:rgba(232,235,232,.14);--sombra:0 1px 0 rgba(0,0,0,.3),0 12px 32px -18px rgba(0,0,0,.8);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --concreto:#161a18;--concreto-2:#1d2220;--papel:#202623;--tinta:#e8ebe8;--tinta-2:#a9b2ad;
+  --aluminio:#59605c;--persiana:#3f9a70;--persiana-2:#55b285;--manaca:#b892d6;--vidro:#7d8d91;--guilhotina:#8d8778;
+  --linha:rgba(232,235,232,.14);--sombra:0 1px 0 rgba(0,0,0,.3),0 12px 32px -18px rgba(0,0,0,.8);color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--concreto);color:var(--tinta);font:400 17px/1.6 var(--texto);-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+[hidden]{display:none!important}
+a{color:var(--persiana)}
+:focus-visible{outline:3px solid var(--manaca);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,9vw,112px);border-top:1px solid var(--linha)}
+h1,h2,h3{font-family:var(--display);font-stretch:112%;line-height:1.05;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.6rem,6.4vw,5rem);font-weight:780}
+h2{font-size:clamp(2rem,4.2vw,3.1rem);font-weight:740}
+h3{font-size:1.25rem;font-weight:680;font-stretch:105%}
+p{margin:0;max-width:62ch}
+.rotulo{font:500 .78rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--persiana);display:flex;align-items:center;gap:.6em}
+.rotulo::before{content:"";width:22px;height:2px;background:currentColor}
+.lead{font-size:clamp(1.1rem,1.6vw,1.3rem);color:var(--tinta-2)}
+.pilha{display:flex;flex-direction:column;gap:20px}
+.nota{font-size:.85rem;color:var(--tinta-2)}
+.mono{font-family:var(--mono)}
+
+/* barra de navegação */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--concreto)}
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--concreto) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.marca{font:700 1rem/1 var(--display);font-stretch:120%;letter-spacing:.02em;text-decoration:none;color:var(--tinta);display:flex;align-items:center;gap:10px;white-space:nowrap}
+.marca i{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#fff 0 18%,var(--manaca) 20% 100%);display:inline-block}
+.menu{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.menu::-webkit-scrollbar{display:none}
+.menu a{font:500 .82rem/1 var(--texto);color:var(--tinta-2);text-decoration:none;padding:8px 10px;border-radius:999px;white-space:nowrap}
+.menu a:hover,.menu a.ativo{background:var(--concreto-2);color:var(--tinta)}
+@media (max-width:820px){.menu{display:none}}
+@media (max-width:520px){.btn-apres{display:none}.rotulo{font-size:.7rem;letter-spacing:.08em}}
+.btn-apres{font:600 .82rem/1 var(--texto);border:1px solid var(--linha);background:var(--papel);color:var(--tinta);padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.btn-apres:hover{border-color:var(--persiana)}
+
+/* hero */
+.hero{border-top:0;padding-block:clamp(40px,7vw,88px) clamp(56px,8vw,96px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-grid>*{min-width:0}
+@media (max-width:880px){.hero-grid{grid-template-columns:1fr}}
+.hero h1 em{font-style:normal;color:var(--persiana)}
+.selos{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.selo{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--papel);border:1px solid var(--linha);font-weight:600;font-size:.92rem}
+.selo b{width:8px;height:8px;border-radius:50%;background:var(--persiana)}
+
+/* fachada interativa */
+.fachada-box{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:18px;box-shadow:var(--sombra)}
+.fachada{--cols:3;display:grid;grid-template-columns:repeat(var(--cols),1fr);gap:0;background:var(--concreto-2);border-radius:6px;padding:10px 10px 0;position:relative}
+.vao{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:7px 7px 14px;border-right:4px solid var(--concreto);border-bottom:6px solid var(--concreto)}
+.vao:nth-child(3n){border-right:0}
+.jan{aspect-ratio:1.25/1;border:2px solid var(--aluminio);border-radius:2px;position:relative;overflow:hidden;cursor:pointer;background:var(--vidro);padding:0}
+.jan:hover{border-color:var(--manaca)}
+.jan.velha{background:
+  repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.22) 5px 6px),
+  linear-gradient(180deg,var(--guilhotina) 0 48%,#3d3a33 48% 52%,var(--vidro) 52%);border-color:#8f8a7c}
+.jan.nova{background:linear-gradient(90deg,var(--vidro) 0 49%,var(--aluminio) 49% 51%,var(--vidro) 51%)}
+.jan .pers{position:absolute;inset:0 0 auto;height:var(--h,50%);background:repeating-linear-gradient(180deg,var(--persiana) 0 3px,var(--persiana-2) 3px 4px);transition:height .9s cubic-bezier(.5,0,.2,1)}
+.fachada.branca .jan .pers{background:repeating-linear-gradient(180deg,#e9ebe8 0 3px,#d5d8d4 3px 4px)}
+.jan.velha .pers{display:none}
+.controles{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:16px}
+.controles label{font-size:.88rem;color:var(--tinta-2);display:flex;align-items:center;gap:10px;flex:1 1 220px}
+input[type=range]{accent-color:var(--persiana);flex:1;min-width:0}
+.saida{font:500 .9rem/1 var(--mono);min-width:7ch;text-align:right;color:var(--tinta)}
+.seg{display:inline-flex;border:1px solid var(--linha);border-radius:999px;padding:3px;background:var(--concreto)}
+.seg button{border:0;background:transparent;color:var(--tinta-2);font:600 .82rem/1 var(--texto);padding:8px 12px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--papel);color:var(--tinta);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.legenda{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--tinta-2);margin-top:10px}
+.legenda span{display:inline-flex;align-items:center;gap:6px}
+.legenda i{width:14px;height:11px;border-radius:2px;display:inline-block}
+
+/* hoje */
+.dupla{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.dupla>*{min-width:0}
+@media (max-width:880px){.dupla{grid-template-columns:1fr}}
+.foto{border-radius:12px;overflow:hidden;box-shadow:var(--sombra);position:relative;background:var(--concreto-2)}
+#hoje .foto img{width:100%;max-height:680px;object-fit:cover}
+.foto figcaption{position:absolute;left:12px;bottom:12px;font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:rgba(20,24,22,.72);color:#f1f3f1;padding:7px 10px;border-radius:6px}
+.problemas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.problemas{grid-template-columns:1fr}}
+.problema{padding:18px;border-radius:10px;background:var(--papel);border:1px solid var(--linha)}
+.problema h3{font-size:1.05rem;margin-bottom:6px}
+.problema p{font-size:.95rem;color:var(--tinta-2)}
+
+/* comparação de cor */
+.cores{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:center}
+.cores>*{min-width:0}
+@media (max-width:880px){.cores{grid-template-columns:1fr}}
+.comparador{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--sombra);aspect-ratio:1/1;max-width:100%;user-select:none;touch-action:pan-y;background:var(--concreto-2)}
+.comparador img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.comparador .topo-img{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
+.comparador .divisor{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+.comparador .alca{position:absolute;top:50%;left:var(--x,50%);transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#1d2421;display:grid;place-items:center;font:600 .9rem/1 var(--mono);box-shadow:0 4px 14px rgba(0,0,0,.3);pointer-events:none}
+.comparador .tag{position:absolute;top:12px;font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;background:rgba(20,24,22,.72);color:#f1f3f1;padding:7px 10px;border-radius:6px}
+.comparador .tag.e{left:12px}.comparador .tag.d{right:12px}
+.comparador input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+
+/* vídeo */
+.video-card{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px;box-shadow:var(--sombra)}
+.video-card video{width:100%;border-radius:8px;aspect-ratio:1/1;object-fit:cover;background:#111}
+.video-card .controles{margin-top:12px}
+
+/* modelo */
+.modelo{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,5vw,64px);align-items:center}
+.modelo>*{min-width:0}
+@media (max-width:880px){.modelo{grid-template-columns:1fr}}
+.modelo .foto{background:#fff}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:0;border-top:1px solid var(--linha)}
+.specs dt,.specs dd{margin:0;padding:12px 0;border-bottom:1px solid var(--linha)}
+.specs dt{font:500 .78rem/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--tinta-2);padding-right:20px;padding-top:15px}
+.beneficios{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+@media (max-width:720px){.beneficios{grid-template-columns:1fr}}
+.beneficio{padding:16px;border-left:3px solid var(--persiana);background:var(--papel);border-radius:0 8px 8px 0}
+.beneficio h3{font-size:1rem;margin-bottom:4px}
+.beneficio p{font-size:.92rem;color:var(--tinta-2)}
+
+/* simulador de valores */
+.valores{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
+.valores>*{min-width:0}
+@media (max-width:880px){.valores{grid-template-columns:1fr}}
+.calc{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:clamp(18px,3vw,28px);box-shadow:var(--sombra);display:flex;flex-direction:column;gap:20px}
+.calc fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.calc legend{font-weight:600;margin-bottom:8px}
+.opcoes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:440px){.opcoes{grid-template-columns:1fr}}
+.opcao{position:relative}
+.opcao input{position:absolute;opacity:0;pointer-events:none}
+.opcao label{display:flex;flex-direction:column;gap:4px;padding:14px;border:1.5px solid var(--linha);border-radius:10px;cursor:pointer;height:100%}
+.opcao label small{color:var(--tinta-2);font-size:.82rem;line-height:1.4}
+.opcao input:checked+label{border-color:var(--persiana);background:color-mix(in srgb,var(--persiana) 8%,transparent)}
+.opcao input:focus-visible+label{outline:3px solid var(--manaca);outline-offset:2px}
+.quartos{display:flex;gap:8px}
+.quartos button{flex:1;padding:12px 0;border-radius:10px;border:1.5px solid var(--linha);background:transparent;color:var(--tinta);font:600 1rem/1 var(--texto);cursor:pointer}
+.quartos button[aria-pressed=true]{border-color:var(--persiana);background:color-mix(in srgb,var(--persiana) 8%,transparent)}
+.resultado{border-top:1px dashed var(--linha);padding-top:18px;display:flex;flex-direction:column;gap:6px}
+.resultado .valor{font:700 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);font-stretch:108%;font-variant-numeric:tabular-nums}
+.resultado .por{font-size:.92rem;color:var(--tinta-2)}
+.calma{padding:18px 20px;border-radius:12px;background:color-mix(in srgb,var(--manaca) 9%,var(--papel));border:1px solid color-mix(in srgb,var(--manaca) 25%,transparent)}
+.calma h3{font-size:1.05rem;margin-bottom:6px}
+.calma p{font-size:.95rem}
+details{border:1px solid var(--linha);border-radius:10px;background:var(--papel)}
+details summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details summary::after{content:"+";font-family:var(--mono);color:var(--tinta-2)}
+details[open] summary::after{content:"−"}
+details .corpo{padding:0 16px 16px;font-size:.93rem;color:var(--tinta-2);display:flex;flex-direction:column;gap:10px}
+.tabela{width:100%;border-collapse:collapse;font-size:.92rem}
+.tabela td{padding:8px 0;border-bottom:1px solid var(--linha);color:var(--tinta)}
+.tabela td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* caminho */
+.caminho{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:passo;margin-top:8px}
+@media (max-width:880px){.caminho{grid-template-columns:1fr 1fr;gap:24px 0}}
+@media (max-width:520px){.caminho{grid-template-columns:1fr}}
+.passo{position:relative;padding:28px 20px 0 0;border-top:2px solid var(--aluminio)}
+.passo::before{counter-increment:passo;content:counter(passo);position:absolute;top:-15px;left:0;width:28px;height:28px;border-radius:50%;background:var(--concreto);border:2px solid var(--aluminio);display:grid;place-items:center;font:600 .8rem/1 var(--mono);color:var(--tinta-2)}
+.passo.agora{border-top-color:var(--persiana)}
+.passo.agora::before{background:var(--persiana);border-color:var(--persiana);color:#fff}
+.passo h3{font-size:1.05rem;margin-bottom:6px}
+.passo p{font-size:.93rem;color:var(--tinta-2)}
+.passo .quando{font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--persiana);display:block;margin-bottom:8px}
+blockquote.pauta{margin:0;padding:clamp(20px,3vw,32px);background:var(--papel);border-radius:14px;border:1px solid var(--linha);font-size:clamp(1.02rem,1.5vw,1.18rem);line-height:1.6;box-shadow:var(--sombra)}
+blockquote.pauta p{max-width:none}
+blockquote.pauta footer{margin-top:14px;font-size:.85rem;color:var(--tinta-2)}
+
+/* perguntas */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:760px){.faq{grid-template-columns:1fr}}
+
+.rodape{padding-block:40px 56px;font-size:.85rem;color:var(--tinta-2);border-top:1px solid var(--linha)}
+.rodape .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+
+/* modo apresentação */
+body.apres .topo .menu{display:none}
+body.apres section{min-height:calc(100vh - 56px);display:flex;align-items:center}
+body.apres section>.wrap{width:100%}
+.dica{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;background:var(--tinta);color:var(--concreto);font:500 .8rem/1.3 var(--texto);padding:10px 14px;border-radius:10px;box-shadow:var(--sombra);display:flex;gap:10px;align-items:center}
+.dica button{background:transparent;border:1px solid currentColor;color:inherit;border-radius:6px;padding:6px 10px;cursor:pointer;font:inherit}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio"><i aria-hidden="true"></i>Janelas do Manacá</a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#hoje">Hoje</a>
+      <a href="#aparencia">Aparência</a>
+      <a href="#convivencia">Convivência</a>
+      <a href="#modelo">O modelo</a>
+      <a href="#valores">Valores</a>
+      <a href="#assembleia">Assembleia</a>
+      <a href="#perguntas">Dúvidas</a>
+    </nav>
+    <button class="btn-apres" id="btn-apres" type="button">Modo apresentação</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div class="pilha">
+      <span class="rotulo">Condomínio Edifício Manacá · proposta para assembleia</span>
+      <h1>Novas janelas para quem quiser, <em>no seu tempo</em>.</h1>
+      <p class="lead">Uma proposta para definir, juntos, um novo padrão de janela para os dormitórios. Ninguém é obrigado a trocar. Quem quiser renovar passa a ter um modelo aprovado, que combina com a fachada e convive bem com as janelas atuais.</p>
+      <div class="selos">
+        <span class="selo"><b></b>Opcional</span>
+        <span class="selo"><b></b>Gradativa</span>
+        <span class="selo"><b></b>Harmônica com a fachada</span>
+      </div>
+    </div>
+
+    <div class="fachada-box" aria-label="Simulação da fachada lateral">
+      <div class="fachada" id="fachada" role="group" aria-label="Fachada simulada: toque em uma janela para trocá-la"></div>
+      <div class="controles">
+        <label for="adesao">Vizinhos que já trocaram
+          <input type="range" id="adesao" min="0" max="100" value="35" step="5">
+          <output class="saida" id="adesao-saida" for="adesao">35%</output>
+        </label>
+        <div class="seg" role="group" aria-label="Cor da persiana">
+          <button type="button" data-cor="verde" aria-pressed="true">Verde</button>
+          <button type="button" data-cor="branca" aria-pressed="false">Branca</button>
+        </div>
+      </div>
+      <div class="legenda">
+        <span><i style="background:var(--guilhotina)"></i>Guilhotina atual</span>
+        <span><i style="background:var(--persiana)"></i>Veneziana de correr</span>
+        <span>Toque numa janela para trocar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hoje">
+  <div class="wrap dupla">
+    <figure class="foto" style="margin:0">
+      <img src="assets/fachada-original.jpg" alt="Foto em perspectiva da fachada lateral do Edifício Manacá, com as janelas guilhotina atuais e venezianas antigas" loading="lazy" width="1200" height="1594">
+      <figcaption>Foto real · fachada lateral hoje</figcaption>
+    </figure>
+    <div class="pilha">
+      <span class="rotulo">Por que conversar sobre isso</span>
+      <h2>As janelas guilhotina chegaram ao fim da vida útil.</h2>
+      <p class="lead">Elas acompanharam o prédio por décadas. Hoje, cuidar delas ficou difícil para muitos moradores, e cada um tem resolvido do seu jeito.</p>
+      <div class="problemas">
+        <div class="problema"><h3>Faltam peças</h3><p>O modelo original saiu de linha. Contrapesos, roldanas e trilhos de reposição quase não existem mais no mercado.</p></div>
+        <div class="problema"><h3>Manutenção difícil</h3><p>Consertos viram improvisos, e uma janela que trava ou despenca é um risco para quem mora e para quem passa.</p></div>
+        <div class="problema"><h3>Sem padrão definido</h3><p>Sem um modelo aprovado, quem precisa trocar não sabe o que pode instalar. A fachada corre o risco de virar uma colcha de retalhos.</p></div>
+        <div class="problema"><h3>Conforto</h3><p>Vedação fraca deixa passar barulho, chuva e luz. Escurecer o quarto para dormir é um desafio.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="aparencia">
+  <div class="wrap pilha" style="gap:32px">
+    <div class="pilha" style="max-width:760px">
+      <span class="rotulo">Como ficaria</span>
+      <h2>Repare: só o andar do meio trocou, e a fachada continua bonita.</h2>
+    </div>
+    <div class="cores">
+      <div class="comparador" id="comparador" style="--x:50%">
+        <img src="assets/fachada-branca.jpg" alt="Simulação com caixa da persiana na cor branca" loading="lazy">
+        <img class="topo-img" src="assets/fachada-verde.jpg" alt="Simulação com caixa da persiana na cor verde" loading="lazy">
+        <span class="tag e">Caixa verde</span><span class="tag d">Caixa branca</span>
+        <div class="divisor"></div><div class="alca" aria-hidden="true">⇆</div>
+        <input type="range" min="0" max="100" value="50" id="comp-range" aria-label="Arraste para comparar caixa verde e caixa branca">
+      </div>
+      <div class="pilha">
+        <p class="lead">As imagens mostram o mesmo trecho da fachada com apenas um andar renovado. Os andares de cima e de baixo seguem com as janelas de hoje, e o conjunto continua coerente.</p>
+        <p>Arraste a barra para comparar duas possibilidades de acabamento da caixa da persiana: verde, acompanhando a lâmina, ou branca, mais discreta junto ao concreto. A escolha final da cor seria um dos trabalhos da comissão.</p>
+        <p class="nota">Imagens ilustrativas geradas por inteligência artificial a partir da fachada real. Servem para dar uma ideia do resultado, não são projeto técnico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="convivencia">
+  <div class="wrap dupla" style="align-items:center">
+    <div class="pilha">
+      <span class="rotulo">Cada janela, uma decisão</span>
+      <h2>Cada quarto no seu ritmo, cada janela independente.</h2>
+      <p class="lead">Cada dormitório tem duas janelas. Com o novo modelo, cada uma abre, fecha e escurece de forma independente, do jeito que o morador preferir naquele momento.</p>
+      <p>No vídeo, as persianas sobem e descem em tempos diferentes, como acontece num prédio de verdade: um vizinho dormindo, outro arejando o quarto, outro que nem trocou ainda. A fachada continua organizada porque o padrão é o mesmo.</p>
+      <p class="nota">Simulação gerada por inteligência artificial e editada para separar as janelas da esquerda e da direita de cada quarto.</p>
+    </div>
+    <div class="video-card">
+      <video id="video" src="assets/video-janelas-independentes.mp4" poster="assets/video-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animação das persianas subindo e descendo de forma independente"></video>
+      <div class="controles">
+        <div class="seg" role="group" aria-label="Versão do vídeo">
+          <button type="button" data-video="assets/video-janelas-independentes.mp4" aria-pressed="true">Janelas independentes</button>
+          <button type="button" data-video="assets/video-original.mp4" aria-pressed="false">Primeira versão</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modelo">
+  <div class="wrap pilha" style="gap:36px">
+    <div class="modelo">
+      <figure class="foto" style="margin:0">
+        <img src="assets/modelo-veneziana.jpg" alt="Janela de correr com veneziana integrada, em alumínio branco, com quatro folhas" width="1000" height="1000">
+        <figcaption>Modelo de referência</figcaption>
+      </figure>
+      <div class="pilha">
+        <span class="rotulo">O modelo de referência</span>
+        <h2>Janela de correr com veneziana integrada.</h2>
+        <p class="lead">Um conjunto só: vidro e persiana no mesmo quadro de alumínio, instalado no vão da guilhotina atual.</p>
+        <dl class="specs">
+          <dt>Tipo</dt><dd>Janela integrada de correr, 4 folhas</dd>
+          <dt>Vão</dt><dd>Cerca de <span class="mono">3,0 × 1,25 m</span> por quarto</dd>
+          <dt>Vidro</dt><dd>Temperado incolor <span class="mono">6 mm</span></dd>
+          <dt>Quadro</dt><dd>Alumínio com pintura branca</dd>
+          <dt>Persiana</dt><dd>Externa, de enrolar, na cor verde</dd>
+          <dt>Acionamento</dt><dd>Manual ou com motor (opcional)</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="beneficios">
+      <div class="beneficio"><h3>Quarto escuro de verdade</h3><p>A persiana externa bloqueia a luz e ajuda no descanso, sem cortinas pesadas.</p></div>
+      <div class="beneficio"><h3>Menos calor e barulho</h3><p>A lâmina por fora barra o sol direto, e o conjunto veda melhor que a guilhotina.</p></div>
+      <div class="beneficio"><h3>Peças fáceis de achar</h3><p>Modelo atual de mercado, com vários fabricantes e assistência técnica.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="valores">
+  <div class="wrap valores">
+    <div class="pilha">
+      <span class="rotulo">Quanto custa</span>
+      <h2>Um valor de referência, para cada um planejar com calma.</h2>
+      <p class="lead">Ninguém precisa decidir agora. Este simulador só mostra a ordem de grandeza, para quem tiver curiosidade ou já estiver pensando em trocar.</p>
+      <div class="calma">
+        <h3>Você escolhe se troca, quando troca e quantas janelas troca.</h3>
+        <p>Dá para começar por um quarto e deixar os outros para depois, ou nem trocar. As janelas atuais continuam permitidas.</p>
+      </div>
+      <details>
+        <summary>Detalhes do orçamento de referência</summary>
+        <div class="corpo">
+          <p>Orçamento indicativo da MNK Esquadrias, de dezembro de 2025, para 2 janelas integradas de 4 folhas (medida orçada 2,830 × 1,250 m; o vão real tem cerca de 3 m e será confirmado no estudo), vidro temperado incolor 6 mm, pintura branca e persiana externa verde.</p>
+          <table class="tabela">
+            <tr><td>Janela com persiana manual</td><td>R$ 6.000</td></tr>
+            <tr><td>Janela com persiana motorizada</td><td>R$ 6.500</td></tr>
+            <tr><td>Manual, a partir de 5 apartamentos</td><td>R$ 5.700</td></tr>
+            <tr><td>Motorizada, a partir de 5 apartamentos</td><td>R$ 6.000</td></tr>
+            <tr><td>Remoção da janela antiga e acabamento em drywall</td><td>R$ 2.900</td></tr>
+          </table>
+          <p>Valores por janela, exceto o serviço de remoção e acabamento. Não incluem pintura nem a parte elétrica do motor (é preciso prever um ponto 110 V ou 220 V). A proposta tinha validade de 5 dias: os valores servem como referência e serão revistos no estudo da comissão.</p>
+          <p><a href="assets/orcamento-indicativo.pdf" target="_blank" rel="noopener">Abrir o orçamento em PDF</a></p>
+        </div>
+      </details>
+    </div>
+
+    <form class="calc" id="calc" aria-label="Simulador de valores">
+      <fieldset>
+        <legend>O que trocar</legend>
+        <div class="opcoes">
+          <div class="opcao">
+            <input type="radio" name="tipo" id="tipo-completa" value="completa" checked>
+            <label for="tipo-completa"><strong>Janela + veneziana</strong><small>Conjunto completo, como no modelo de referência</small></label>
+          </div>
+          <div class="opcao">
+            <input type="radio" name="tipo" id="tipo-vidro" value="vidro">
+            <label for="tipo-vidro"><strong>Só o vidro interno</strong><small>Folhas de correr de vidro, sem a veneziana externa</small></label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Quantos quartos <span class="nota" style="font-weight:400">(2 janelas por quarto)</span></legend>
+        <div class="quartos" role="group" aria-label="Número de quartos">
+          <button type="button" data-q="1" aria-pressed="true">1</button>
+          <button type="button" data-q="2" aria-pressed="false">2</button>
+          <button type="button" data-q="3" aria-pressed="false">3</button>
+        </div>
+      </fieldset>
+      <div class="resultado" aria-live="polite">
+        <span class="nota" id="res-rotulo">Referência para 1 quarto (2 janelas)</span>
+        <span class="valor" id="res-valor">R$ 11.000 a R$ 12.000</span>
+        <span class="por" id="res-por">Cerca de R$ 5.500 a R$ 6.000 por janela</span>
+      </div>
+      <p class="nota">Valores aproximados, só para orientar. O preço final depende do fornecedor escolhido, das medidas de cada vão e de quantos vizinhos fecharem juntos: no orçamento, a partir de 5 apartamentos o valor por janela já cai.</p>
+    </form>
+  </div>
+</section>
+
+<section id="assembleia">
+  <div class="wrap pilha" style="gap:40px">
+    <div class="pilha" style="max-width:780px">
+      <span class="rotulo">O que vamos votar</span>
+      <h2>Hoje a decisão é só formar uma comissão de estudo.</h2>
+      <p class="lead">Não se vota nenhuma troca nem nenhum gasto. O abaixo-assinado dos condôminos pede que a assembleia aprove um grupo para estudar o assunto com cuidado.</p>
+    </div>
+    <blockquote class="pauta">
+      <p>“Deliberação e aprovação da formação de uma comissão que vise estudar as especificações técnicas para a padronização e substituição das janelas das unidades (dormitórios / fachada lateral e fundos), em virtude da obsolescência do modelo original e indisponibilidade de peças de reposição, com a ressalva de que não haverá obrigatoriedade de troca imediata.”</p>
+      <footer>Item de pauta solicitado na Lista de Apoio e Anuência dos Condôminos</footer>
+    </blockquote>
+    <div class="caminho">
+      <div class="passo agora"><span class="quando">Nesta assembleia</span><h3>Formar a comissão</h3><p>Moradores voluntários que vão conduzir o estudo.</p></div>
+      <div class="passo"><span class="quando">Próximos meses</span><h3>Estudar o padrão</h3><p>Modelo, cor, medidas, fornecedores e possibilidade de compra conjunta.</p></div>
+      <div class="passo"><span class="quando">Assembleia futura</span><h3>Aprovar o padrão</h3><p>A proposta da comissão é apresentada e votada por todos.</p></div>
+      <div class="passo"><span class="quando">Quando cada um quiser</span><h3>Trocar, se e quando quiser</h3><p>Cada proprietário decide se troca e em que momento, seguindo o padrão aprovado.</p></div>
+    </div>
+    <div class="beneficios">
+      <div class="beneficio"><h3>Preservação estética</h3><p>O novo modelo deve ser harmônico com a fachada atual do edifício.</p></div>
+      <div class="beneficio"><h3>Caráter opcional</h3><p>Aprovar o padrão apenas permite a troca. Ninguém fica obrigado a trocar.</p></div>
+      <div class="beneficio"><h3>Troca gradativa</h3><p>As janelas novas e as atuais convivem lado a lado, pelo tempo que for preciso.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="perguntas">
+  <div class="wrap pilha" style="gap:32px">
+    <div class="pilha">
+      <span class="rotulo">Dúvidas comuns</span>
+      <h2>Perguntas que os vizinhos costumam fazer.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Vou ser obrigado a trocar minhas janelas?</summary><div class="corpo"><p>Não. A proposta só cria um padrão permitido. Quem estiver satisfeito com a janela atual pode continuar com ela.</p></div></details>
+      <details><summary>Vai ter rateio ou taxa extra?</summary><div class="corpo"><p>Não está previsto. Cada proprietário paga apenas pelas janelas que decidir trocar na própria unidade.</p></div></details>
+      <details><summary>Posso trocar só um quarto?</summary><div class="corpo"><p>Pode. A troca é por janela, e cada quarto tem duas. Dá para começar pelo quarto que mais precisa.</p></div></details>
+      <details><summary>A fachada não vai ficar desigual?</summary><div class="corpo"><p>Ter um padrão único é justamente o que evita isso. Hoje cada um conserta como consegue. Com um modelo aprovado, todas as trocas seguem o mesmo desenho e a mesma cor.</p></div></details>
+      <details><summary>Preciso do motor?</summary><div class="corpo"><p>Não. A persiana pode ser manual. O motor é opcional e exige um ponto de energia perto da janela.</p></div></details>
+      <details><summary>Os valores já estão fechados?</summary><div class="corpo"><p>Não. O orçamento apresentado é só uma referência. A comissão vai pesquisar fornecedores e condições, inclusive de compra em grupo.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span>Condomínio Edifício Manacá · proposta de revitalização das janelas dos dormitórios</span>
+    <span>Imagens e vídeo de fachada são simulações ilustrativas, exceto a foto em perspectiva.</span>
+  </div>
+</footer>
+
+<div class="dica" id="dica" hidden><span>Use ← → ou a barra de espaço para mudar de seção</span><button type="button" id="sair-apres">Sair</button></div>
+
+<script>
+(function(){
+  // ---------- fachada simulada ----------
+  var fachada=document.getElementById('fachada');
+  var ANDARES=7, VAOS=3, janelas=[];
+  for(var a=0;a<ANDARES;a++){
+    for(var v=0;v<VAOS;v++){
+      var vao=document.createElement('div'); vao.className='vao';
+      for(var s=0;s<2;s++){
+        var b=document.createElement('button'); b.type='button'; b.className='jan velha';
+        b.setAttribute('aria-label','Andar '+(ANDARES-a)+', quarto '+(v+1)+', janela '+(s?'direita':'esquerda'));
+        var p=document.createElement('span'); p.className='pers'; b.appendChild(p);
+        b.style.setProperty('--h',(15+Math.random()*70).toFixed(0)+'%');
+        vao.appendChild(b); janelas.push(b);
+      }
+      fachada.appendChild(vao);
+    }
+  }
+  // ordem pseudoaleatória fixa para a adesão crescer sempre igual
+  var ordem=janelas.map(function(_,i){return i}), seed=7;
+  function rnd(){seed=(seed*9301+49297)%233280;return seed/233280}
+  for(var i=ordem.length-1;i>0;i--){var j=Math.floor(rnd()*(i+1));var t=ordem[i];ordem[i]=ordem[j];ordem[j]=t}
+  var adesao=document.getElementById('adesao'), saida=document.getElementById('adesao-saida');
+  function aplicaAdesao(){
+    var n=Math.round(janelas.length*adesao.value/100);
+    ordem.forEach(function(idx,k){janelas[idx].className='jan '+(k<n?'nova':'velha')});
+    saida.textContent=adesao.value+'%';
+  }
+  adesao.addEventListener('input',aplicaAdesao); aplicaAdesao();
+  fachada.addEventListener('click',function(e){
+    var j=e.target.closest('.jan'); if(!j) return;
+    j.classList.toggle('nova'); j.classList.toggle('velha');
+    var n=janelas.filter(function(x){return x.classList.contains('nova')}).length;
+    saida.textContent=Math.round(n/janelas.length*100)+'%';
+  });
+  // persianas se movem sozinhas, cada uma no seu tempo
+  setInterval(function(){
+    if(document.hidden) return;
+    var novas=janelas.filter(function(x){return x.classList.contains('nova')});
+    if(!novas.length) return;
+    var j=novas[Math.floor(Math.random()*novas.length)];
+    j.style.setProperty('--h',(Math.random()<.25?92:Math.random()*75).toFixed(0)+'%');
+  },700);
+  document.querySelectorAll('[data-cor]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('[data-cor]').forEach(function(b){b.setAttribute('aria-pressed',b===btn)});
+      fachada.classList.toggle('branca',btn.dataset.cor==='branca');
+    });
+  });
+
+  // ---------- comparador ----------
+  var comp=document.getElementById('comparador'), cr=document.getElementById('comp-range');
+  cr.addEventListener('input',function(){comp.style.setProperty('--x',cr.value+'%')});
+
+  // ---------- vídeo ----------
+  var video=document.getElementById('video');
+  document.querySelectorAll('[data-video]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('[data-video]').forEach(function(b){b.setAttribute('aria-pressed',b===btn)});
+      video.src=btn.dataset.video; var pr=video.play(); if(pr&&pr.catch) pr.catch(function(){});
+    });
+  });
+
+  // ---------- simulador de valores ----------
+  var PRECOS={completa:[5500,6000],vidro:[1900,1900]}, quartos=1;
+  var brl=function(n){return 'R$ '+n.toLocaleString('pt-BR')};
+  function calcula(){
+    var tipo=document.querySelector('input[name=tipo]:checked').value, f=PRECOS[tipo], jan=quartos*2;
+    var min=f[0]*jan, max=f[1]*jan;
+    document.getElementById('res-rotulo').textContent='Referência para '+quartos+(quartos>1?' quartos':' quarto')+' ('+jan+' janelas)';
+    document.getElementById('res-valor').textContent=min===max?'Cerca de '+brl(min):brl(min)+' a '+brl(max);
+    document.getElementById('res-por').textContent=f[0]===f[1]?'Cerca de '+brl(f[0])+' por janela':'Cerca de '+brl(f[0])+' a '+brl(f[1])+' por janela';
+  }
+  document.querySelectorAll('input[name=tipo]').forEach(function(r){r.addEventListener('change',calcula)});
+  document.querySelectorAll('[data-q]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      quartos=+btn.dataset.q;
+      document.querySelectorAll('[data-q]').forEach(function(b){b.setAttribute('aria-pressed',b===btn)});
+      calcula();
+    });
+  });
+  document.getElementById('calc').addEventListener('submit',function(e){e.preventDefault()});
+  calcula();
+
+  // ---------- menu ativo ----------
+  var secoes=[].slice.call(document.querySelectorAll('main section'));
+  var links=[].slice.call(document.querySelectorAll('.menu a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.toggle('ativo',l.getAttribute('href')==='#'+e.target.id)}) } });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    secoes.forEach(function(s){io.observe(s)});
+  }
+
+  // ---------- modo apresentação ----------
+  var dica=document.getElementById('dica');
+  function atual(){
+    var y=window.innerHeight*.35, idx=0;
+    secoes.forEach(function(s,i){ if(s.getBoundingClientRect().top<=y) idx=i });
+    return idx;
+  }
+  function vai(d){
+    var i=Math.max(0,Math.min(secoes.length-1,atual()+d));
+    secoes[i].scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function liga(on){
+    document.body.classList.toggle('apres',on); dica.hidden=!on;
+    if(on && document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen().catch(function(){}); }
+    if(!on && document.fullscreenElement && document.exitFullscreen){ document.exitFullscreen().catch(function(){}); }
+  }
+  document.getElementById('btn-apres').addEventListener('click',function(){liga(!document.body.classList.contains('apres'))});
+  document.getElementById('sair-apres').addEventListener('click',function(){liga(false)});
+  document.addEventListener('keydown',function(e){
+    if(!document.body.classList.contains('apres')) return;
+    if(e.target.closest('input,textarea,select')) return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();vai(1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();vai(-1)}
+    else if(e.key==='Escape'){liga(false)}
+  });
+})();
+</script>
+</body>
+</html>
