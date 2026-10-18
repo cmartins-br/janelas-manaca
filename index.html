@@ -23,7 +23,7 @@
   --persiana-2:#2f7556;
   --manaca:#7b4f9e;
   --vidro:#5f6e72;
-  --guilhotina:#6f6a5e;
+  --guilhotina:#5d6f63;
   --linha:rgba(29,36,33,.14);
   --sombra:0 1px 0 rgba(29,36,33,.06),0 12px 32px -18px rgba(29,36,33,.35);
   --display:"Archivo","Arial Narrow",system-ui,sans-serif;
@@ -33,11 +33,11 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --concreto:#161a18;--concreto-2:#1d2220;--papel:#202623;--tinta:#e8ebe8;--tinta-2:#a9b2ad;
-  --aluminio:#59605c;--persiana:#3f9a70;--persiana-2:#55b285;--manaca:#b892d6;--vidro:#7d8d91;--guilhotina:#8d8778;
+  --aluminio:#59605c;--persiana:#3f9a70;--persiana-2:#55b285;--manaca:#b892d6;--vidro:#7d8d91;--guilhotina:#7c8e82;
   --linha:rgba(232,235,232,.14);--sombra:0 1px 0 rgba(0,0,0,.3),0 12px 32px -18px rgba(0,0,0,.8);color-scheme:dark}}
 :root[data-theme="dark"]{
   --concreto:#161a18;--concreto-2:#1d2220;--papel:#202623;--tinta:#e8ebe8;--tinta-2:#a9b2ad;
-  --aluminio:#59605c;--persiana:#3f9a70;--persiana-2:#55b285;--manaca:#b892d6;--vidro:#7d8d91;--guilhotina:#8d8778;
+  --aluminio:#59605c;--persiana:#3f9a70;--persiana-2:#55b285;--manaca:#b892d6;--vidro:#7d8d91;--guilhotina:#7c8e82;
   --linha:rgba(232,235,232,.14);--sombra:0 1px 0 rgba(0,0,0,.3),0 12px 32px -18px rgba(0,0,0,.8);color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -97,7 +97,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .jan:hover{border-color:var(--manaca)}
 .jan.velha{background:
   repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.22) 5px 6px),
-  linear-gradient(180deg,var(--guilhotina) 0 48%,#3d3a33 48% 52%,var(--vidro) 52%);border-color:#8f8a7c}
+  linear-gradient(180deg,var(--guilhotina) 0 48%,#36423b 48% 52%,var(--vidro) 52%);border-color:#86948b}
 .jan.nova{border-top:5px solid #eef0ed;background:linear-gradient(180deg,var(--vidro) 0 47%,var(--aluminio) 47% 53%,var(--vidro) 53%)}
 .jan .pers{position:absolute;inset:0 0 auto;height:var(--h,50%);background:repeating-linear-gradient(180deg,var(--persiana) 0 3px,var(--persiana-2) 3px 4px);transition:height .9s cubic-bezier(.5,0,.2,1)}
 .jan.velha .pers{display:none}
