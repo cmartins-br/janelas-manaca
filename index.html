@@ -98,7 +98,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .jan.velha{background:
   repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.22) 5px 6px),
   linear-gradient(180deg,var(--guilhotina) 0 48%,#3d3a33 48% 52%,var(--vidro) 52%);border-color:#8f8a7c}
-.jan.nova{border-top:5px solid #eef0ed;background:linear-gradient(90deg,var(--vidro) 0 49%,var(--aluminio) 49% 51%,var(--vidro) 51%)}
+.jan.nova{border-top:5px solid #eef0ed;background:linear-gradient(180deg,var(--vidro) 0 47%,var(--aluminio) 47% 53%,var(--vidro) 53%)}
 .jan .pers{position:absolute;inset:0 0 auto;height:var(--h,50%);background:repeating-linear-gradient(180deg,var(--persiana) 0 3px,var(--persiana-2) 3px 4px);transition:height .9s cubic-bezier(.5,0,.2,1)}
 .jan.velha .pers{display:none}
 .controles{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:16px}
@@ -297,8 +297,8 @@ body.apres section>.wrap{width:100%}
       </figure>
       <div class="pilha">
         <p class="lead">A imagem mostra um trecho da fachada com apenas um andar renovado. Os andares de cima e de baixo seguem com as janelas de hoje, e o conjunto continua coerente.</p>
-        <p>A caixa da persiana continua branca, como a de hoje, e só a lâmina aparece em verde. Por isso a mudança fica discreta junto ao concreto da fachada.</p>
-        <p class="nota">Imagem ilustrativa gerada por inteligência artificial a partir da fachada real. Serve para dar uma ideia do resultado, não é projeto técnico.</p>
+        <p>A caixa da persiana continua branca, como a de hoje, e só a lâmina aparece em verde. As folhas de vidro podem manter as mesmas travessas das janelas atuais, então a mudança fica discreta junto ao concreto da fachada.</p>
+        <p class="nota">Imagem ilustrativa gerada por inteligência artificial a partir da fachada real. Serve para dar uma ideia do resultado, não é projeto técnico: a divisão das folhas de vidro pode seguir a das janelas atuais.</p>
       </div>
     </div>
   </div>
@@ -337,13 +337,18 @@ body.apres section>.wrap{width:100%}
         <h2>Janela de correr com veneziana integrada.</h2>
         <p class="lead">Um conjunto só: vidro e persiana no mesmo quadro de alumínio, instalado no vão da guilhotina atual.</p>
         <dl class="specs">
-          <dt>Tipo</dt><dd>Janela integrada de correr, 4 folhas</dd>
+          <dt>Tipo</dt><dd>Janela integrada de correr, com veneziana</dd>
+          <dt>Desenho</dt><dd>Folhas de vidro com as mesmas travessas das janelas atuais</dd>
           <dt>Vão</dt><dd>Cerca de <span class="mono">3,0 × 1,25 m</span> por quarto</dd>
           <dt>Vidro</dt><dd>Temperado incolor <span class="mono">6 mm</span></dd>
           <dt>Quadro</dt><dd>Alumínio com pintura branca</dd>
           <dt>Persiana</dt><dd>Externa, de enrolar, lâmina verde e caixa branca</dd>
           <dt>Acionamento</dt><dd>Manual ou com motor (opcional)</dd>
         </dl>
+        <div class="calma">
+          <h3>Por fora, a vista continua igual.</h3>
+          <p>A janela de vidro passa a correr de lado, mas pode ter exatamente a mesma divisão das atuais, com a travessa no mesmo lugar. Quem olha a fachada vê o mesmo desenho de sempre.</p>
+        </div>
       </div>
     </div>
     <div class="beneficios">
@@ -391,7 +396,7 @@ body.apres section>.wrap{width:100%}
           </div>
           <div class="opcao">
             <input type="radio" name="tipo" id="tipo-vidro" value="vidro">
-            <label for="tipo-vidro"><strong>Só o vidro interno</strong><small>Folhas de correr de vidro, sem a veneziana externa</small></label>
+            <label for="tipo-vidro"><strong>Só o vidro interno</strong><small>Folhas de correr com o mesmo desenho das atuais, sem a veneziana externa</small></label>
           </div>
         </div>
       </fieldset>
@@ -449,6 +454,7 @@ body.apres section>.wrap{width:100%}
       <details><summary>Vai ter rateio ou taxa extra?</summary><div class="corpo"><p>Não está previsto. Cada proprietário paga apenas pelas janelas que decidir trocar na própria unidade.</p></div></details>
       <details><summary>Posso trocar só um quarto?</summary><div class="corpo"><p>Pode. A troca é por janela, e cada quarto tem duas. Dá para começar pelo quarto que mais precisa.</p></div></details>
       <details><summary>A fachada não vai ficar desigual?</summary><div class="corpo"><p>Ter um padrão único é justamente o que evita isso. Hoje cada um conserta como consegue. Com um modelo aprovado, todas as trocas seguem o mesmo desenho e a mesma cor.</p></div></details>
+      <details><summary>A janela nova muda o desenho da fachada?</summary><div class="corpo"><p>Não precisa mudar. A janela de vidro corre de lado, mas as folhas podem manter as mesmas travessas das atuais. Vista de fora, a fachada fica igual.</p></div></details>
       <details><summary>Preciso do motor?</summary><div class="corpo"><p>Não. A persiana pode ser manual. O motor é opcional e exige um ponto de energia perto da janela.</p></div></details>
       <details><summary>Os valores já estão fechados?</summary><div class="corpo"><p>Não. O orçamento apresentado é só uma referência. A comissão está pesquisando fornecedores e condições, inclusive de compra em grupo.</p></div></details>
     </div>
