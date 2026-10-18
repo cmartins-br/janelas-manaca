@@ -190,6 +190,9 @@ details .corpo{padding:0 16px 16px;font-size:.93rem;color:var(--tinta-2);display
 .passo::before{counter-increment:passo;content:counter(passo);position:absolute;top:-15px;left:0;width:28px;height:28px;border-radius:50%;background:var(--concreto);border:2px solid var(--aluminio);display:grid;place-items:center;font:600 .8rem/1 var(--mono);color:var(--tinta-2)}
 .passo.agora{border-top-color:var(--persiana)}
 .passo.agora::before{background:var(--persiana);border-color:var(--persiana);color:#fff}
+.passo.feito{border-top-color:var(--persiana)}
+.passo.feito::before{content:"✓";background:var(--papel);border-color:var(--persiana);color:var(--persiana)}
+
 .passo h3{font-size:1.05rem;margin-bottom:6px}
 .passo p{font-size:.93rem;color:var(--tinta-2)}
 .passo .quando{font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--persiana);display:block;margin-bottom:8px}
@@ -223,7 +226,7 @@ body.apres section>.wrap{width:100%}
       <a href="#convivencia">Convivência</a>
       <a href="#modelo">O modelo</a>
       <a href="#valores">Valores</a>
-      <a href="#assembleia">Assembleia</a>
+      <a href="#assembleia">Próximos passos</a>
       <a href="#perguntas">Dúvidas</a>
     </nav>
     <button class="btn-apres" id="btn-apres" type="button">Modo apresentação</button>
@@ -234,9 +237,9 @@ body.apres section>.wrap{width:100%}
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div class="pilha">
-      <span class="rotulo">Condomínio Edifício Manacá · proposta para assembleia</span>
+      <span class="rotulo">Condomínio Edifício Manacá · estudo da comissão de janelas</span>
       <h1>Novas janelas para quem quiser, <em>no seu tempo</em>.</h1>
-      <p class="lead">Uma proposta para definir, juntos, um novo padrão de janela para os dormitórios. Ninguém é obrigado a trocar. Quem quiser renovar passa a ter um modelo aprovado, que combina com a fachada e convive bem com as janelas atuais.</p>
+      <p class="lead">A comissão está estudando um novo padrão de janela para os dormitórios. Ninguém é obrigado a trocar. Quem quiser renovar passará a ter um modelo aprovado, que combina com a fachada e convive bem com as janelas atuais.</p>
       <div class="selos">
         <span class="selo"><b></b>Opcional</span>
         <span class="selo"><b></b>Gradativa</span>
@@ -413,18 +416,18 @@ body.apres section>.wrap{width:100%}
 <section id="assembleia">
   <div class="wrap pilha" style="gap:40px">
     <div class="pilha" style="max-width:780px">
-      <span class="rotulo">O que vamos votar</span>
-      <h2>Hoje a decisão é só formar uma comissão de estudo.</h2>
-      <p class="lead">Não se vota nenhuma troca nem nenhum gasto. O abaixo-assinado dos condôminos pede que a assembleia aprove um grupo para estudar o assunto com cuidado.</p>
+      <span class="rotulo">Onde estamos</span>
+      <h2>A comissão já foi formada. Agora estamos estudando o padrão.</h2>
+      <p class="lead">Esta apresentação faz parte desse estudo. Nenhuma troca e nenhum gasto estão sendo decididos agora: a comissão reúne informações para levar uma proposta de padrão à assembleia, e cada morador continua livre para trocar ou não.</p>
     </div>
     <blockquote class="pauta">
       <p>“Deliberação e aprovação da formação de uma comissão que vise estudar as especificações técnicas para a padronização e substituição das janelas das unidades (dormitórios / fachada lateral e fundos), em virtude da obsolescência do modelo original e indisponibilidade de peças de reposição, com a ressalva de que não haverá obrigatoriedade de troca imediata.”</p>
-      <footer>Item de pauta solicitado na Lista de Apoio e Anuência dos Condôminos</footer>
+      <footer>Pedido do abaixo-assinado dos condôminos que deu origem à comissão</footer>
     </blockquote>
     <div class="caminho">
-      <div class="passo agora"><span class="quando">Nesta assembleia</span><h3>Formar a comissão</h3><p>Moradores voluntários que vão conduzir o estudo.</p></div>
-      <div class="passo"><span class="quando">Próximos meses</span><h3>Estudar o padrão</h3><p>Modelo, cor, medidas, fornecedores e possibilidade de compra conjunta.</p></div>
-      <div class="passo"><span class="quando">Assembleia futura</span><h3>Aprovar o padrão</h3><p>A proposta da comissão é apresentada e votada por todos.</p></div>
+      <div class="passo feito"><span class="quando">Concluído</span><h3>Formar a comissão</h3><p>Moradores voluntários que conduzem o estudo.</p></div>
+      <div class="passo agora"><span class="quando">Estamos aqui</span><h3>Estudar o padrão</h3><p>Modelo, cor, medidas, fornecedores e possibilidade de compra conjunta.</p></div>
+      <div class="passo"><span class="quando">Próxima etapa</span><h3>Aprovar o padrão</h3><p>A proposta da comissão é apresentada e votada por todos.</p></div>
       <div class="passo"><span class="quando">Quando cada um quiser</span><h3>Trocar, se e quando quiser</h3><p>Cada proprietário decide se troca e em que momento, seguindo o padrão aprovado.</p></div>
     </div>
     <div class="beneficios">
@@ -447,7 +450,7 @@ body.apres section>.wrap{width:100%}
       <details><summary>Posso trocar só um quarto?</summary><div class="corpo"><p>Pode. A troca é por janela, e cada quarto tem duas. Dá para começar pelo quarto que mais precisa.</p></div></details>
       <details><summary>A fachada não vai ficar desigual?</summary><div class="corpo"><p>Ter um padrão único é justamente o que evita isso. Hoje cada um conserta como consegue. Com um modelo aprovado, todas as trocas seguem o mesmo desenho e a mesma cor.</p></div></details>
       <details><summary>Preciso do motor?</summary><div class="corpo"><p>Não. A persiana pode ser manual. O motor é opcional e exige um ponto de energia perto da janela.</p></div></details>
-      <details><summary>Os valores já estão fechados?</summary><div class="corpo"><p>Não. O orçamento apresentado é só uma referência. A comissão vai pesquisar fornecedores e condições, inclusive de compra em grupo.</p></div></details>
+      <details><summary>Os valores já estão fechados?</summary><div class="corpo"><p>Não. O orçamento apresentado é só uma referência. A comissão está pesquisando fornecedores e condições, inclusive de compra em grupo.</p></div></details>
     </div>
   </div>
 </section>
