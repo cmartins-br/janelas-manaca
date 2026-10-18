@@ -95,9 +95,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .vao:nth-child(3n){border-right:0}
 .jan{aspect-ratio:1.25/1;border:2px solid var(--aluminio);border-radius:2px;position:relative;overflow:hidden;cursor:pointer;background:var(--vidro);padding:0}
 .jan:hover{border-color:var(--manaca)}
-.jan.velha{background:
-  repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.22) 5px 6px),
-  linear-gradient(180deg,var(--guilhotina) 0 48%,#36423b 48% 52%,var(--vidro) 52%);border-color:#86948b}
+.jan.velha{background:#232926;border-color:#86948b}
+.jan .gs,.jan .gi{position:absolute;left:0;right:0;height:50%;transition:transform 1.1s cubic-bezier(.5,0,.2,1)}
+.jan .gs{top:0;transform:translateY(calc(var(--o,0) * -1%));background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.22) 5px 6px),var(--guilhotina);border-bottom:2px solid #36423b}
+.jan .gi{top:50%;transform:translateY(calc(var(--o,0) * 1%));background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 60%),var(--vidro);border-top:2px solid #36423b}
+.jan.nova .gs,.jan.nova .gi{display:none}
 .jan.nova{border-top:5px solid #eef0ed;background:linear-gradient(180deg,var(--vidro) 0 47%,var(--aluminio) 47% 53%,var(--vidro) 53%)}
 .jan .pers{position:absolute;inset:0 0 auto;height:var(--h,50%);background:repeating-linear-gradient(180deg,var(--persiana) 0 3px,var(--persiana-2) 3px 4px);transition:height .9s cubic-bezier(.5,0,.2,1)}
 .jan.velha .pers{display:none}
@@ -499,6 +501,8 @@ body.apres section>.wrap{width:100%}
         var b=document.createElement('button'); b.type='button'; b.className='jan velha';
         b.setAttribute('aria-label','Andar '+(ANDARES-a)+', quarto '+(v+1)+', janela '+(s?'direita':'esquerda'));
         var p=document.createElement('span'); p.className='pers'; b.appendChild(p);
+        var gs=document.createElement('span'); gs.className='gs'; b.appendChild(gs);
+        var gi=document.createElement('span'); gi.className='gi'; b.appendChild(gi);
         b.style.setProperty('--h',(15+Math.random()*70).toFixed(0)+'%');
         vao.appendChild(b); janelas.push(b);
       }
@@ -525,11 +529,14 @@ body.apres section>.wrap{width:100%}
   // persianas se movem sozinhas, cada uma no seu tempo
   setInterval(function(){
     if(document.hidden) return;
-    var novas=janelas.filter(function(x){return x.classList.contains('nova')});
-    if(!novas.length) return;
-    var j=novas[Math.floor(Math.random()*novas.length)];
-    j.style.setProperty('--h',(Math.random()<.25?92:Math.random()*75).toFixed(0)+'%');
-  },700);
+    var j=janelas[Math.floor(Math.random()*janelas.length)];
+    if(j.classList.contains('nova')){
+      j.style.setProperty('--h',(Math.random()<.25?92:Math.random()*75).toFixed(0)+'%');
+    }else{
+      // guilhotina: a folha de cima sobe e a de baixo desce, ao mesmo tempo
+      j.style.setProperty('--o',(Math.random()<.5?0:20+Math.random()*35).toFixed(0));
+    }
+  },450);
 
   // ---------- vídeo ----------
 
