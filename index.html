@@ -149,6 +149,12 @@ input[type=range]{accent-color:var(--persiana);flex:1;min-width:0}
 .beneficio h3{font-size:1rem;margin-bottom:4px}
 .beneficio p{font-size:.92rem;color:var(--tinta-2)}
 
+/* por dentro */
+.galeria{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.galeria>figure{margin:0;min-width:0}
+.galeria img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:560px){.galeria{grid-template-columns:1fr}}
+
 /* simulador de valores */
 .valores{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
 .valores>*{min-width:0}
@@ -225,6 +231,7 @@ body.apres section>.wrap{width:100%}
       <a href="#aparencia">Aparência</a>
       <a href="#convivencia">Convivência</a>
       <a href="#modelo">O modelo</a>
+      <a href="#por-dentro">Por dentro</a>
       <a href="#valores">Valores</a>
       <a href="#assembleia">Próximos passos</a>
       <a href="#perguntas">Dúvidas</a>
@@ -355,6 +362,22 @@ body.apres section>.wrap{width:100%}
       <div class="beneficio"><h3>Quarto escuro de verdade</h3><p>A persiana externa bloqueia a luz e ajuda no descanso, sem cortinas pesadas.</p></div>
       <div class="beneficio"><h3>Menos calor e barulho</h3><p>A lâmina por fora barra o sol direto, e o conjunto veda melhor que a guilhotina.</p></div>
       <div class="beneficio"><h3>Peças fáceis de achar</h3><p>Modelo atual de mercado, com vários fabricantes e assistência técnica.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="por-dentro">
+  <div class="wrap pilha" style="gap:32px">
+    <div class="pilha" style="max-width:780px">
+      <span class="rotulo">Por dentro, numa obra já feita</span>
+      <h2>A janela corre de lado, mas o desenho continua o mesmo.</h2>
+      <p class="lead">Estas fotos são de uma instalação real. As folhas de vidro correm para os lados e mantêm a travessa no meio, como nas janelas antigas. A veneziana fica por trás do vidro.</p>
+    </div>
+    <div class="galeria">
+      <figure class="foto"><img src="assets/interna-frontal.jpg" alt="Janela de vidro de correr instalada, com duas folhas e travessa horizontal no meio, veneziana fechada por trás" loading="lazy" width="1000" height="750"><figcaption>Foto real · vista de frente</figcaption></figure>
+      <figure class="foto"><img src="assets/interna-detalhe.jpg" alt="Detalhe da folha de vidro com a travessa horizontal e as lâminas da veneziana atrás" loading="lazy" width="1000" height="750"><figcaption>Foto real · detalhe da travessa</figcaption></figure>
+      <figure class="foto"><img src="assets/interna-quarto-1.jpg" alt="Dormitório com a janela nova ao fundo, vista de dentro do quarto" loading="lazy" width="1000" height="750"><figcaption>Foto real · dormitório</figcaption></figure>
+      <figure class="foto"><img src="assets/interna-quarto-2.jpg" alt="Outro ângulo do dormitório com a janela nova ao fundo" loading="lazy" width="1000" height="750"><figcaption>Foto real · dormitório</figcaption></figure>
     </div>
   </div>
 </section>
