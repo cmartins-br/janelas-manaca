@@ -98,9 +98,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .jan.velha{background:
   repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.22) 5px 6px),
   linear-gradient(180deg,var(--guilhotina) 0 48%,#3d3a33 48% 52%,var(--vidro) 52%);border-color:#8f8a7c}
-.jan.nova{background:linear-gradient(90deg,var(--vidro) 0 49%,var(--aluminio) 49% 51%,var(--vidro) 51%)}
+.jan.nova{border-top:5px solid #eef0ed;background:linear-gradient(90deg,var(--vidro) 0 49%,var(--aluminio) 49% 51%,var(--vidro) 51%)}
 .jan .pers{position:absolute;inset:0 0 auto;height:var(--h,50%);background:repeating-linear-gradient(180deg,var(--persiana) 0 3px,var(--persiana-2) 3px 4px);transition:height .9s cubic-bezier(.5,0,.2,1)}
-.fachada.branca .jan .pers{background:repeating-linear-gradient(180deg,#e9ebe8 0 3px,#d5d8d4 3px 4px)}
 .jan.velha .pers{display:none}
 .controles{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:16px}
 .controles label{font-size:.88rem;color:var(--tinta-2);display:flex;align-items:center;gap:10px;flex:1 1 220px}
@@ -130,14 +129,6 @@ input[type=range]{accent-color:var(--persiana);flex:1;min-width:0}
 .cores{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:center}
 .cores>*{min-width:0}
 @media (max-width:880px){.cores{grid-template-columns:1fr}}
-.comparador{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--sombra);aspect-ratio:1/1;max-width:100%;user-select:none;touch-action:pan-y;background:var(--concreto-2)}
-.comparador img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.comparador .topo-img{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
-.comparador .divisor{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
-.comparador .alca{position:absolute;top:50%;left:var(--x,50%);transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#1d2421;display:grid;place-items:center;font:600 .9rem/1 var(--mono);box-shadow:0 4px 14px rgba(0,0,0,.3);pointer-events:none}
-.comparador .tag{position:absolute;top:12px;font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;background:rgba(20,24,22,.72);color:#f1f3f1;padding:7px 10px;border-radius:6px}
-.comparador .tag.e{left:12px}.comparador .tag.d{right:12px}
-.comparador input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
 
 /* vídeo */
 .video-card{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px;box-shadow:var(--sombra)}
@@ -260,10 +251,6 @@ body.apres section>.wrap{width:100%}
           <input type="range" id="adesao" min="0" max="100" value="35" step="5">
           <output class="saida" id="adesao-saida" for="adesao">35%</output>
         </label>
-        <div class="seg" role="group" aria-label="Cor da persiana">
-          <button type="button" data-cor="verde" aria-pressed="true">Verde</button>
-          <button type="button" data-cor="branca" aria-pressed="false">Branca</button>
-        </div>
       </div>
       <div class="legenda">
         <span><i style="background:var(--guilhotina)"></i>Guilhotina atual</span>
@@ -301,17 +288,14 @@ body.apres section>.wrap{width:100%}
       <h2>Repare: só o andar do meio trocou, e a fachada continua bonita.</h2>
     </div>
     <div class="cores">
-      <div class="comparador" id="comparador" style="--x:50%">
-        <img src="assets/fachada-branca.jpg" alt="Simulação com caixa da persiana na cor branca" loading="lazy">
-        <img class="topo-img" src="assets/fachada-verde.jpg" alt="Simulação com caixa da persiana na cor verde" loading="lazy">
-        <span class="tag e">Caixa verde</span><span class="tag d">Caixa branca</span>
-        <div class="divisor"></div><div class="alca" aria-hidden="true">⇆</div>
-        <input type="range" min="0" max="100" value="50" id="comp-range" aria-label="Arraste para comparar caixa verde e caixa branca">
-      </div>
+      <figure class="foto" style="margin:0">
+        <img src="assets/fachada-branca.jpg" alt="Simulação da fachada com o andar do meio renovado: persianas verdes com a caixa branca mantida" width="1400" height="1400">
+        <figcaption>Simulação · andar do meio renovado</figcaption>
+      </figure>
       <div class="pilha">
-        <p class="lead">As imagens mostram o mesmo trecho da fachada com apenas um andar renovado. Os andares de cima e de baixo seguem com as janelas de hoje, e o conjunto continua coerente.</p>
-        <p>Arraste a barra para comparar duas possibilidades de acabamento da caixa da persiana: verde, acompanhando a lâmina, ou branca, mais discreta junto ao concreto. A escolha final da cor seria um dos trabalhos da comissão.</p>
-        <p class="nota">Imagens ilustrativas geradas por inteligência artificial a partir da fachada real. Servem para dar uma ideia do resultado, não são projeto técnico.</p>
+        <p class="lead">A imagem mostra um trecho da fachada com apenas um andar renovado. Os andares de cima e de baixo seguem com as janelas de hoje, e o conjunto continua coerente.</p>
+        <p>A caixa da persiana continua branca, como a de hoje, e só a lâmina aparece em verde. Por isso a mudança fica discreta junto ao concreto da fachada.</p>
+        <p class="nota">Imagem ilustrativa gerada por inteligência artificial a partir da fachada real. Serve para dar uma ideia do resultado, não é projeto técnico.</p>
       </div>
     </div>
   </div>
@@ -354,7 +338,7 @@ body.apres section>.wrap{width:100%}
           <dt>Vão</dt><dd>Cerca de <span class="mono">3,0 × 1,25 m</span> por quarto</dd>
           <dt>Vidro</dt><dd>Temperado incolor <span class="mono">6 mm</span></dd>
           <dt>Quadro</dt><dd>Alumínio com pintura branca</dd>
-          <dt>Persiana</dt><dd>Externa, de enrolar, na cor verde</dd>
+          <dt>Persiana</dt><dd>Externa, de enrolar, lâmina verde e caixa branca</dd>
           <dt>Acionamento</dt><dd>Manual ou com motor (opcional)</dd>
         </dl>
       </div>
@@ -521,16 +505,6 @@ body.apres section>.wrap{width:100%}
     var j=novas[Math.floor(Math.random()*novas.length)];
     j.style.setProperty('--h',(Math.random()<.25?92:Math.random()*75).toFixed(0)+'%');
   },700);
-  document.querySelectorAll('[data-cor]').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('[data-cor]').forEach(function(b){b.setAttribute('aria-pressed',b===btn)});
-      fachada.classList.toggle('branca',btn.dataset.cor==='branca');
-    });
-  });
-
-  // ---------- comparador ----------
-  var comp=document.getElementById('comparador'), cr=document.getElementById('comp-range');
-  cr.addEventListener('input',function(){comp.style.setProperty('--x',cr.value+'%')});
 
   // ---------- vídeo ----------
   var video=document.getElementById('video');

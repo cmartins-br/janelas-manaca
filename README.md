@@ -17,7 +17,6 @@ e abra http://localhost:8000
 
 ## Conteúdo
 - `assets/fachada-original.jpg` – foto real da fachada lateral
-- `assets/fachada-verde.jpg`, `assets/fachada-branca.jpg` – simulações geradas por IA
 - `assets/video-janelas-independentes.mp4` – vídeo gerado por IA, editado para que as janelas da esquerda e da direita de cada quarto se movam de forma independente
 - `assets/video-original.mp4` – versão original do vídeo
 - `assets/orcamento-indicativo.pdf` – orçamento de referência
