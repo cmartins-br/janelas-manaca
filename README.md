@@ -18,6 +18,5 @@ e abra http://localhost:8000
 ## Conteúdo
 - `assets/fachada-original.jpg` – foto real da fachada lateral
 - `assets/video-janelas-independentes.mp4` – vídeo gerado por IA, editado para que as janelas da esquerda e da direita de cada quarto se movam de forma independente
-- `assets/video-original.mp4` – versão original do vídeo
 - `assets/interna-*.jpg` – fotos reais de uma instalação já feita (janela de correr com a mesma travessa das antigas)
 - `assets/orcamento-indicativo.pdf` – orçamento de referência

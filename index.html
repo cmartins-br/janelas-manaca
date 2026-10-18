@@ -133,7 +133,6 @@ input[type=range]{accent-color:var(--persiana);flex:1;min-width:0}
 /* vídeo */
 .video-card{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px;box-shadow:var(--sombra)}
 .video-card video{width:100%;border-radius:8px;aspect-ratio:1/1;object-fit:cover;background:#111}
-.video-card .controles{margin-top:12px}
 
 /* modelo */
 .modelo{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,5vw,64px);align-items:center}
@@ -322,12 +321,6 @@ body.apres section>.wrap{width:100%}
     </div>
     <div class="video-card">
       <video id="video" src="assets/video-janelas-independentes.mp4" poster="assets/video-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animação das persianas subindo e descendo de forma independente"></video>
-      <div class="controles">
-        <div class="seg" role="group" aria-label="Versão do vídeo">
-          <button type="button" data-video="assets/video-janelas-independentes.mp4" aria-pressed="true">Janelas independentes</button>
-          <button type="button" data-video="assets/video-original.mp4" aria-pressed="false">Primeira versão</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -539,13 +532,6 @@ body.apres section>.wrap{width:100%}
   },700);
 
   // ---------- vídeo ----------
-  var video=document.getElementById('video');
-  document.querySelectorAll('[data-video]').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('[data-video]').forEach(function(b){b.setAttribute('aria-pressed',b===btn)});
-      video.src=btn.dataset.video; var pr=video.play(); if(pr&&pr.catch) pr.catch(function(){});
-    });
-  });
 
   // ---------- simulador de valores ----------
   var PRECOS={completa:[5500,6000],vidro:[1900,1900]}, quartos=1;
