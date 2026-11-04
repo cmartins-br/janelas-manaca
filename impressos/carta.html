@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Janelas do Manacá · carta e pesquisa</title>
+<link rel="stylesheet" href="fontes/fontes.css">
+<style>
+@page{size:A4;margin:0}
+:root{
+  --concreto:#ecedea;--concreto-2:#e1e3df;--papel:#f7f8f6;--tinta:#1d2421;--tinta-2:#4d5752;
+  --aluminio:#b9beb9;--persiana:#235c43;--persiana-2:#2f7556;--manaca:#7b4f9e;--vidro:#5f6e72;
+  --linha:rgba(29,36,33,.18);
+  --display:"Archivo","Arial Narrow",sans-serif;--texto:"Public Sans",Arial,sans-serif;--mono:"IBM Plex Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#888}
+body{color:var(--tinta);font:400 10pt/1.45 var(--texto);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pagina{width:210mm;height:297mm;padding:13mm 15mm 12mm;background:#fff;margin:0 auto 8mm;position:relative;overflow:hidden;display:flex;flex-direction:column;page-break-after:always;break-after:page}
+.pagina:last-child{page-break-after:auto;break-after:auto;margin-bottom:0}
+@media print{html,body{background:#fff}.pagina{margin:0}}
+h1,h2,h3{font-family:var(--display);font-stretch:112%;line-height:1.05;letter-spacing:-.01em;margin:0}
+p{margin:0}
+.rotulo{font:500 7.2pt/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--persiana);display:flex;align-items:center;gap:.6em}
+.rotulo::before{content:"";width:16px;height:1.5px;background:currentColor}
+
+/* cabeçalho */
+.cab{display:flex;justify-content:space-between;align-items:center;gap:10mm;padding-bottom:4mm;border-bottom:1px solid var(--linha)}
+.marca{font:700 10.5pt/1 var(--display);font-stretch:120%;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.marca i{width:13px;height:13px;border-radius:50%;background:radial-gradient(circle,#fff 0 18%,var(--manaca) 20% 100%);display:inline-block}
+.marca small{display:block;font:500 6.8pt/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2);margin-top:3px;font-stretch:100%}
+.apto{display:flex;align-items:center;gap:8px;border:1.5px solid var(--tinta);border-radius:8px;padding:5px 6px 5px 10px}
+.apto span{font:500 7pt/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.apto b{font:750 17pt/1 var(--display);font-stretch:110%;min-width:22mm;height:9mm;display:grid;place-items:center;border-radius:5px;background:var(--concreto)}
+.apto b:empty{background:#fff;border-bottom:1.2px solid var(--tinta);border-radius:0}
+
+/* página 1 */
+.titulo{margin-top:7mm;display:flex;flex-direction:column;gap:3.2mm}
+.titulo h1{font-size:25pt;font-weight:780}
+.titulo h1 em{font-style:normal;color:var(--persiana)}
+.carta{font-size:10.2pt;color:var(--tinta)}
+.carta p+p{margin-top:2mm}
+.comparar{margin-top:5.5mm;display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.quadro{border:1px solid var(--linha);border-radius:10px;padding:3.5mm;background:var(--papel);display:flex;flex-direction:column;gap:2.5mm}
+.quadro svg{width:100%;height:auto;display:block;border-radius:5px}
+.quadro h3{font-size:11.5pt;font-weight:700;display:flex;align-items:baseline;justify-content:space-between;gap:6px}
+.quadro h3 small{font:500 6.6pt/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2)}
+.quadro.novo{border-color:var(--persiana);background:#f2f6f3}
+.quadro.novo h3 small{color:var(--persiana)}
+.quadro ul{margin:0;padding:0;list-style:none;font-size:8.6pt;color:var(--tinta-2);display:flex;flex-direction:column;gap:1mm}
+.quadro li{display:flex;gap:6px;align-items:baseline}
+.quadro li i{font:600 6.8pt/1 var(--mono);font-style:normal;width:13px;height:13px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--persiana);color:#fff;transform:translateY(2px)}
+.quadro.hoje li i{background:var(--tinta-2)}
+.args{margin-top:5mm;display:grid;grid-template-columns:1fr 1fr;gap:3.2mm 6mm}
+.arg{border-left:2.5px solid var(--persiana);padding:.6mm 0 .6mm 3.2mm}
+.arg h3{font-size:10.4pt;font-weight:700;font-stretch:105%;margin-bottom:1mm}
+.arg p{font-size:8.9pt;color:var(--tinta-2);line-height:1.42}
+.pedido{margin-top:5mm;padding:3.6mm 4.5mm;border-radius:10px;background:#f4eff8;border:1px solid #ddd0e8;display:flex;gap:4mm;align-items:center}
+.pedido .seta{font:700 15pt/1 var(--display);color:var(--manaca)}
+.pedido p{font-size:9.6pt}
+.rodape1{margin-top:auto;display:flex;align-items:center;gap:6mm;padding-top:4mm;border-top:1px solid var(--linha)}
+.qr{width:27mm;height:27mm;flex:none;padding:1.5mm;border:1px solid var(--linha);border-radius:6px;background:#fff}
+.qr svg{width:100%;height:100%;display:block}
+.rodape1 .txt{display:flex;flex-direction:column;gap:1.4mm;flex:1}
+.rodape1 h3{font-size:11pt;font-weight:700}
+.rodape1 p{font-size:8.8pt;color:var(--tinta-2)}
+.url{font:500 10pt/1 var(--mono);color:var(--persiana)}
+.assina{font-size:8.8pt;text-align:right;color:var(--tinta-2);line-height:1.4;flex:none}
+.assina b{display:block;color:var(--tinta);font-family:var(--display);font-stretch:108%;font-size:10pt}
+
+/* página 2 */
+.titulo2{margin-top:8mm;display:flex;flex-direction:column;gap:3mm}
+.titulo2 h1{font-size:22pt;font-weight:760}
+.instrucoes{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:1mm}
+.instrucoes div{background:var(--papel);border:1px solid var(--linha);border-radius:8px;padding:2.5mm 3mm;font-size:8.4pt;color:var(--tinta-2);line-height:1.38}
+.instrucoes b{display:block;color:var(--tinta);font-size:8.9pt;margin-bottom:.6mm}
+.pergunta{margin-top:8mm}
+.pergunta h2{font-size:12.6pt;font-weight:720;font-stretch:108%;display:flex;gap:3mm;align-items:baseline}
+.pergunta h2 .n{font:500 7.5pt/1 var(--mono);color:#fff;background:var(--persiana);border-radius:4px;padding:2px 5px;transform:translateY(-2px)}
+.pergunta .sub{font-size:8.6pt;color:var(--tinta-2);margin-top:1.4mm}
+.opcoes{margin-top:3.6mm;display:flex;flex-direction:column;gap:3mm}
+.op{display:flex;align-items:center;gap:4mm;border:1.2px solid var(--linha);border-radius:9px;padding:4.2mm 4.5mm}
+.op .caixa{width:7mm;height:7mm;border:1.6px solid var(--tinta);border-radius:3px;flex:none;background:#fff}
+.op .num{font:600 8pt/1 var(--mono);color:var(--tinta-2);width:4mm;flex:none}
+.op strong{font-size:10.8pt;font-weight:600;display:block}
+.op small{display:block;font-size:8.3pt;color:var(--tinta-2);margin-top:.6mm;line-height:1.35}
+.opcoes.linha{flex-direction:row}
+.opcoes.linha .op{flex:1;padding:2.6mm 3.4mm;gap:3mm}
+.opcoes.linha .op .caixa{width:6mm;height:6mm}
+.opcoes.linha .op strong{font-size:9.4pt}
+.linhas{margin-top:3mm;display:flex;flex-direction:column}
+.linhas span{height:9.5mm;border-bottom:1px solid #9aa29d}
+.rodape2{margin-top:auto;padding-top:3.5mm;border-top:1px dashed #9aa29d;display:flex;justify-content:space-between;align-items:flex-end;gap:8mm;font-size:8.3pt;color:var(--tinta-2)}
+.rodape2 .ret{font:600 9.4pt/1.35 var(--texto);color:var(--tinta)}
+.rodape2 .ret span{font:500 9.4pt/1 var(--mono);letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<!-- ==================== PÁGINA 1 ==================== -->
+<section class="pagina">
+  <header class="cab">
+    <div class="marca"><i></i><div>Janelas do Manacá<small>Condomínio Edifício Manacá · comissão de estudo das janelas</small></div></div>
+    <div class="apto"><span>Apto</span><b>{{APTO}}</b></div>
+  </header>
+
+  <div class="titulo">
+    <span class="rotulo">Carta da comissão aos moradores</span>
+    <h1>Novas janelas para quem quiser, <em>no seu tempo</em>.</h1>
+    <div class="carta">
+      <p>Prezado morador, prezada moradora: as janelas guilhotina dos dormitórios chegaram ao fim da vida útil. O modelo original saiu de linha, faltam peças de reposição e cada um tem resolvido do seu jeito.</p>
+      <p>A comissão formada pelos condôminos está estudando <strong>um padrão único de janela nova</strong>, para que quem quiser ou precisar trocar saiba o que pode instalar, sem descaracterizar a fachada. Nada está sendo decidido agora: antes de levar uma proposta à assembleia, queremos ouvir você.</p>
+    </div>
+  </div>
+
+  <div class="comparar">
+    <figure class="quadro hoje" style="margin:0">
+      <h3>Como é hoje <small>Guilhotina</small></h3>
+      <svg viewBox="0 0 300 196" role="img" aria-label="Desenho da janela atual: guilhotina com vidro e veneziana antiga">
+        <rect width="300" height="196" fill="#e1e3df"/>
+        <!-- painéis da fachada -->
+        <g fill="#f1f2ef" stroke="#c9cdc8" stroke-width="1.2">
+          <rect x="14" y="10" width="134" height="44"/><rect x="152" y="10" width="134" height="44"/>
+          <rect x="14" y="132" width="134" height="56"/><rect x="152" y="132" width="134" height="56"/>
+        </g>
+        <!-- faixa da janela -->
+        <rect x="14" y="58" width="272" height="70" fill="#8f9a93"/>
+        <!-- janela esquerda: vidro com travessa -->
+        <g>
+          <rect x="18" y="62" width="128" height="62" fill="#5f6e72"/>
+          <rect x="18" y="62" width="128" height="62" fill="url(#reflexo)"/>
+          <rect x="18" y="90" width="128" height="5" fill="#a7b0a9"/>
+          <rect x="18" y="62" width="128" height="62" fill="none" stroke="#a7b0a9" stroke-width="3"/>
+        </g>
+        <!-- janela direita: veneziana antiga verde acinzentada -->
+        <g>
+          <rect x="154" y="62" width="128" height="62" fill="#6f7f74"/>
+          <rect x="154" y="62" width="128" height="62" fill="url(#laminaVelha)"/>
+          <rect x="154" y="90" width="128" height="5" fill="#a7b0a9"/>
+          <rect x="154" y="62" width="128" height="62" fill="none" stroke="#a7b0a9" stroke-width="3"/>
+        </g>
+        <!-- setas sobe e desce -->
+        <g fill="none" stroke="#1d2421" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 72 v16 M65 77 l5 -5 5 5"/>
+          <path d="M94 114 v-16 M89 109 l5 5 5 -5"/>
+        </g>
+        <g font-family="IBM Plex Mono" font-size="8.5" font-weight="500" fill="#1d2421">
+          <circle cx="30" cy="110" r="7" fill="#4d5752"/><text x="30" y="113" fill="#fff" text-anchor="middle">1</text>
+          <circle cx="270" cy="76" r="7" fill="#4d5752"/><text x="270" y="79" fill="#fff" text-anchor="middle">2</text>
+        </g>
+        <defs>
+          <linearGradient id="reflexo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          <pattern id="laminaVelha" width="6" height="4.2" patternUnits="userSpaceOnUse"><rect width="6" height="1.4" y="2.8" fill="#55625a"/></pattern>
+          <pattern id="laminaNova" width="6" height="4.4" patternUnits="userSpaceOnUse"><rect width="6" height="4.4" fill="#235c43"/><rect width="6" height="1.1" y="3.3" fill="#2f7556"/></pattern>
+        </defs>
+      </svg>
+      <ul>
+        <li><i>1</i><span>Vidro sobe e desce por contrapeso. Peças fora de linha.</span></li>
+        <li><i>2</i><span>Veneziana original verde, hoje desbotada pelo tempo.</span></li>
+      </ul>
+    </figure>
+
+    <figure class="quadro novo" style="margin:0">
+      <h3>Novo padrão em estudo <small>De correr</small></h3>
+      <svg viewBox="0 0 300 196" role="img" aria-label="Desenho da janela nova: caixa branca, persiana verde e vidro de correr com a mesma travessa">
+        <rect width="300" height="196" fill="#e1e3df"/>
+        <g fill="#f1f2ef" stroke="#c9cdc8" stroke-width="1.2">
+          <rect x="14" y="10" width="134" height="34"/><rect x="152" y="10" width="134" height="34"/>
+          <rect x="14" y="132" width="134" height="56"/><rect x="152" y="132" width="134" height="56"/>
+        </g>
+        <!-- caixa branca -->
+        <rect x="14" y="44" width="272" height="14" fill="#ffffff" stroke="#8f9a93" stroke-width="1.2"/>
+        <!-- faixa da janela -->
+        <rect x="14" y="58" width="272" height="70" fill="#f4f5f2"/>
+        <!-- vidros de correr com travessa, 2 folhas por janela -->
+        <g>
+          <rect x="18" y="62" width="128" height="62" fill="#5f6e72"/><rect x="18" y="62" width="128" height="62" fill="url(#reflexo)"/>
+          <rect x="154" y="62" width="128" height="62" fill="#5f6e72"/><rect x="154" y="62" width="128" height="62" fill="url(#reflexo)"/>
+          <g fill="#fbfcfa">
+            <rect x="18" y="90" width="128" height="5"/><rect x="154" y="90" width="128" height="5"/>
+          </g>
+          <g fill="none" stroke="#fbfcfa" stroke-width="3">
+            <rect x="18" y="62" width="128" height="62"/><rect x="154" y="62" width="128" height="62"/>
+          </g>
+          <g stroke="#fbfcfa" stroke-width="2.4"><line x1="82" y1="62" x2="82" y2="124"/><line x1="218" y1="62" x2="218" y2="124"/></g>
+        </g>
+        <!-- persianas verdes, cada janela numa altura -->
+        <rect x="16" y="58" width="132" height="16" fill="url(#laminaNova)"/>
+        <rect x="16" y="73" width="132" height="2.5" fill="#1b4935"/>
+        <rect x="152" y="58" width="132" height="22" fill="url(#laminaNova)"/>
+        <rect x="152" y="79" width="132" height="2.5" fill="#1b4935"/>
+        <!-- seta correr -->
+        <g fill="none" stroke="#1d2421" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M44 110 h26 M65 105 l5 5 -5 5"/>
+        </g>
+        <g font-family="IBM Plex Mono" font-size="8.5" font-weight="500">
+          <circle cx="262" cy="51" r="6.5" fill="#235c43"/><text x="262" y="54" fill="#fff" text-anchor="middle">1</text>
+          <circle cx="30" cy="66" r="6" fill="#fff"/><text x="30" y="69" fill="#235c43" text-anchor="middle">2</text>
+          <circle cx="130" cy="110" r="7" fill="#235c43"/><text x="130" y="113" fill="#fff" text-anchor="middle">3</text>
+        </g>
+      </svg>
+      <ul>
+        <li><i>1</i><span>Caixa da persiana branca, como a fachada de hoje.</span></li>
+        <li><i>2</i><span>Lâminas verdes, a cor original das venezianas.</span></li>
+        <li><i>3</i><span>Vidro corre de lado, com a mesma travessa de hoje.</span></li>
+      </ul>
+    </figure>
+  </div>
+
+  <div class="args">
+    <div class="arg"><h3>Ninguém é obrigado a trocar</h3><p>O padrão só define o que pode ser instalado. Quem está satisfeito continua com a janela atual.</p></div>
+    <div class="arg"><h3>Cada um no seu tempo</h3><p>A troca é por janela. Dá para começar por um quarto e deixar os outros para depois. Não está previsto rateio.</p></div>
+    <div class="arg"><h3>A fachada continua harmônica</h3><p>Janelas novas e atuais convivem lado a lado. Com um padrão único, toda troca segue o mesmo desenho e a mesma cor.</p></div>
+    <div class="arg"><h3>Mais conforto no quarto</h3><p>Persiana externa escurece de verdade, barra o sol e veda melhor. Modelo de mercado, com peças fáceis de achar.</p></div>
+  </div>
+
+  <div class="pedido">
+    <span class="seta">→</span>
+    <p><strong>Sua opinião orienta o trabalho da comissão.</strong> Responda a pesquisa da página seguinte e devolva na portaria. Não precisa assinar: o número do apartamento já está indicado.</p>
+  </div>
+
+  <footer class="rodape1">
+    <div class="qr">{{QR}}</div>
+    <div class="txt">
+      <h3>Quer ver mais?</h3>
+      <p>A apresentação completa tem fotos de uma instalação real, simulação da fachada, vídeo e valores de referência.</p>
+      <span class="url">{{URL_CURTA}}</span>
+    </div>
+    <div class="assina">Atenciosamente,<b>Comissão de estudo<br>das janelas</b></div>
+  </footer>
+</section>
+
+<!-- ==================== PÁGINA 2 ==================== -->
+<section class="pagina">
+  <header class="cab">
+    <div class="marca"><i></i><div>Janelas do Manacá<small>Pesquisa de opinião · devolva na portaria</small></div></div>
+    <div class="apto"><span>Apto</span><b>{{APTO}}</b></div>
+  </header>
+
+  <div class="titulo2">
+    <span class="rotulo">Pesquisa da comissão</span>
+    <h1>O que você achou do novo padrão?</h1>
+    <div class="instrucoes">
+      <div><b>Uma por apartamento</b>Marque apenas uma opção em cada pergunta.</div>
+      <div><b>Não precisa assinar</b>O número do apartamento, no alto da folha, já identifica a unidade.</div>
+      <div><b>Devolva na portaria</b>Até ____ / ____ / ________. A comissão divulga só os totais.</div>
+    </div>
+  </div>
+
+  <div class="pergunta">
+    <h2><span class="n">1</span>Sobre o modelo apresentado</h2>
+    <div class="opcoes">
+      <div class="op"><span class="caixa"></span><span class="num">A</span><div><strong>Gostei do modelo e acho que ele pode conviver com as janelas atuais.</strong></div></div>
+      <div class="op"><span class="caixa"></span><span class="num">B</span><div><strong>Não gostaria de ter os dois estilos convivendo na fachada.</strong></div></div>
+      <div class="op"><span class="caixa"></span><span class="num">C</span><div><strong>Não gostei deste modelo. Quero que a comissão busque outra opção.</strong></div></div>
+      <div class="op"><span class="caixa"></span><span class="num">D</span><div><strong>Ainda não tenho opinião. Preciso de mais informações.</strong></div></div>
+    </div>
+  </div>
+
+  <div class="pergunta">
+    <h2><span class="n">2</span>Se o padrão for aprovado, você pensa em trocar alguma janela?</h2>
+    <p class="sub">Não é compromisso. Só ajuda a comissão a saber se vale negociar uma compra conjunta, que costuma baixar o preço.</p>
+    <div class="opcoes linha">
+      <div class="op"><span class="caixa"></span><div><strong>Sim, no próximo ano</strong></div></div>
+      <div class="op"><span class="caixa"></span><div><strong>Talvez, mais para frente</strong></div></div>
+      <div class="op"><span class="caixa"></span><div><strong>Não pretendo trocar</strong></div></div>
+    </div>
+  </div>
+
+  <div class="pergunta">
+    <h2><span class="n">3</span>Comentários ou sugestões <span style="font:400 8.6pt var(--texto);color:var(--tinta-2)">(opcional)</span></h2>
+    <div class="linhas"><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <footer class="rodape2">
+    <div>Dúvidas? Veja a apresentação completa em <span class="mono" style="color:var(--persiana);font-family:var(--mono)">{{URL_CURTA}}</span><br>ou fale com um integrante da comissão.</div>
+    <div class="ret">Devolver na portaria<br><span>Apto {{APTO_RODAPE}}</span></div>
+  </footer>
+</section>
+
+</body>
+</html>

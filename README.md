@@ -20,3 +20,11 @@ e abra http://localhost:8000
 - `assets/video-janelas-independentes.mp4` – vídeo gerado por IA, editado para que as janelas da esquerda e da direita de cada quarto se movam de forma independente
 - `assets/interna-*.jpg` – fotos reais de uma instalação já feita (janela de correr com a mesma travessa das antigas)
 - `assets/orcamento-indicativo.pdf` – orçamento de referência
+
+## Carta impressa e pesquisa (`impressos/`)
+PDF A4 de 2 páginas por apartamento: carta da comissão (janela atual x nova, QR code para o site) e cédula de opinião para devolver na portaria.
+```
+pip install segno
+python3 impressos/gerar.py --url https://SEU-ENDERECO.vercel.app                    # modelo com "Apto" em branco
+python3 impressos/gerar.py --url https://SEU-ENDERECO.vercel.app --aptos 11-14,21-24 # um PDF com todas as unidades
+```
